@@ -99,6 +99,9 @@ python engine.py -m  --config-name=train \
 [ ] zip code base
 [ ] remove my wandb api...
 
+## License
+
+This project is licensed under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Redistribution and use should follow this license.
 
 ## Acknowledgement
 Affordance Diffusion leverages many amazing open-sources shared in research community:
