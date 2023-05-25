@@ -1,0 +1,9 @@
+outputs/
+output/
+*.log
+.venv/
+.cache/
+__pycache__/
+.vscode/
+wandb/
+third_party/

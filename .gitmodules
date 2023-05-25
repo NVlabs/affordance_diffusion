@@ -1,0 +1,6 @@
+[submodule "third_party/EDSR-PyTorch"]
+	path = third_party/EDSR-PyTorch
+	url = https://github.com/JudyYe/EDSR-PyTorch.git
+[submodule "thrid_party"]
+	path = thrid_party
+	url = https://github.com/JudyYe/EDSR-PyTorch.git
