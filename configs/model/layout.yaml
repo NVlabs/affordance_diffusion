@@ -1,0 +1,18 @@
+module: models.layout
+model:  LayoutNet
+target: SpatialUnet
+
+soft_mask: True
+jitter_ratio: 0.0
+grad_clip: 0.01
+cond_mode: both # learn 
+
+side_x: 64
+resume_ckpt: /ws-judyye/output/pretrained_models/glide/base_inpaint.pt
+
+freeze_transformer: True
+freeze_diffusion: False
+ 
+loss_mode: raw # out
+w_img: 0.1
+w_param: 1. 

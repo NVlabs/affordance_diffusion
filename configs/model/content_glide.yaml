@@ -1,0 +1,11 @@
+module: models.content_glide
+model:  ContentNet 
+
+soft_mask: False
+jitter_ratio: 0.1
+grad_clip: 0. 
+freeze_transformer: True
+freeze_diffusion: False
+
+side_x: 64
+resume_ckpt: /ws-judyye/output/pretrained_models/glide/base_inpaint.pt

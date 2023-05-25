@@ -1,0 +1,54 @@
+# TODO: clean up
+defaults:
+  - environment: mocap
+  - hydra: default
+
+data: 
+  data_dir: /ws-judyye/data/hoi4d/obj_cls_only/*.*g
+  split: 
+batch_size: 8
+
+interpolation:
+  len: 30 # length of interpolation 
+  num: 1  # number of sequences
+  test_name: inter # save folder
+  index: 0000_01_s0 # example to take
+  orient: True # whether to flip approaching direction
+
+worker: inference # main function
+
+
+output: output/
+what_ckpt: ${output}/release/content_glide/checkpoints/last.ckpt
+where_ckpt: ${output}/release/layout/checkpoints/last.ckpt
+
+# hijack params
+gt_xy: True
+gt_size: False
+
+pad: null
+metric: 3d
+sweep_slot: 
+test_name: cascade
+test_num: 5
+dry: False
+dir: 
+dirB: /ws-judyye/data/hoi4d/corrsp_hoi_only/ # to eval FID
+
+mode: default
+folder: overall
+save_to_what: False
+expname: dev/tmp # for name appeared in ngc
+
+side_x: 256
+side_y: 256
+use_flip: False
+
+device: cuda
+
+test_guidance_scale: 0
+sample_respacing: '100'
+seed: 123
+
+
+cudnn_benchmark: False

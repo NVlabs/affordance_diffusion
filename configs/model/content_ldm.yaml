@@ -1,0 +1,56 @@
+module: models.content_ldm
+model:  ContentNet 
+
+soft_mask: False
+jitter_ratio: 0.1
+side_x: 256
+resume_ckpt: /ws-judyye/output/pretrained_models/stable/inpaint.ckpt
+grad_clip: 0. 
+freeze_transformer: True
+freeze_diffusion: False
+timesteps: 1000
+scale_factor: 1.
+
+unet_config:
+  target: models.content_ldm.CondModel
+  params:
+    image_size: 64
+    in_channels: 7
+    out_channels: 3
+    model_channels: 256
+    attention_resolutions:
+    - 8
+    - 4
+    - 2
+    num_res_blocks: 2
+    channel_mult:
+    - 1
+    - 2
+    - 3
+    - 4
+    num_heads: 8
+    resblock_updown: true
+first_stage_config:
+  target: ldm.models.autoencoder.VQModelInterface
+  params:
+    embed_dim: 3
+    n_embed: 8192
+    monitor: val/rec_loss
+    ddconfig:
+      attn_type: none
+      double_z: false
+      z_channels: 3
+      resolution: 256
+      in_channels: 3
+      out_ch: 3
+      ch: 128
+      ch_mult:
+      - 1
+      - 2
+      - 4
+      num_res_blocks: 2
+      attn_resolutions: []
+      dropout: 0.0
+    lossconfig:
+      target: ldm.modules.losses.contperceptual.DummyLoss
+cond_stage_config: __is_first_stage__
