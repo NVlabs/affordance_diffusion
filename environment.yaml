@@ -1,0 +1,15 @@
+name: afford_diff
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8.5
+  - pip=20.3
+  - pytorch=1.9
+  - torchvision=0.10.0
+  - cudatoolkit=11.3
+  - numpy=1.22
+  - pip:
+    - pytorch3d
+    - pytorch-lightning==1.6.5
+    - git+https://github.com/facebookresearch/detectron2.git
