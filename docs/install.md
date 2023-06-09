@@ -1,5 +1,5 @@
 ## Installation guide
-1. Recursively clone this github repo `git clone --recursive xxxx`
+1. Recursively clone this github repo `git clone --recursive https://github.com/NVlabs/affordance_diffusion.git`
 1. Download [pre-trained models]() and unzip them to `output/`
 1. (Optionally) Install third party pakcages  if you want to run 3D hand pose prediction and render it.
 - Follow [instructions](https://github.com/facebookresearch/frankmocap/blob/main/docs/INSTALL.md) from Frankmocap and put it under `third_party/frankmocap` 
