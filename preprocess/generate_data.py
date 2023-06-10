@@ -410,8 +410,8 @@ def decode_frame(csv_file, vid_index=None, rewrite=False):
 
 def parser_args():
     parser = ArgumentParser()
-    parser.add_argument('--data_dir', type=str, default='/ws-judyye/data/hoi4d/')
-    parser.add_argument('--save_dir', type=str, default='/ws-judyye/output/tmp_hoi4d/')
+    parser.add_argument('--data_dir', type=str, default='data/hoi4d/')
+    parser.add_argument('--save_dir', type=str, default='output/tmp_hoi4d/')
     parser.add_argument('--save_index', type=str, default='HOI4D_glide')
     parser.add_argument('--split', type=str, default='docs/all_contact.csv')
     
