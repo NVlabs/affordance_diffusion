@@ -1,0 +1,6 @@
+pytorch==1.9
+git+https://github.com/openai/glide-text2im
+opencv-python==4.5.5.64
+ffmpeg
+pandas
+tqdm
