@@ -10,7 +10,6 @@ output: output/ # /grogu/user/yufeiy2/dex_afford/
 #     HOI4D_glide/
 #     Sets/
 data: /home/yufeiy2/scratch/result/
-# /compute/grogu-1-34/yufeiy2/
 
 
 # path to store pretrained models
