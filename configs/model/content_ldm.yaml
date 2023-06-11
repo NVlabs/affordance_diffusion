@@ -4,7 +4,7 @@ model:  ContentNet
 soft_mask: False
 jitter_ratio: 0.1
 side_x: 256
-resume_ckpt: /ws-judyye/output/pretrained_models/stable/inpaint.ckpt
+resume_ckpt: ${environment.pretrain}/stable/inpaint.ckpt
 grad_clip: 0. 
 freeze_transformer: True
 freeze_diffusion: False

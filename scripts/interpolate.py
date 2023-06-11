@@ -7,10 +7,10 @@
 """
 Usage: 
 - Run demo: 
-python -m scripts.interpolate dir=docs/demo_inter output=/ws-judyye/result \
+python -m scripts.interpolate dir=docs/demo_inter output=$path_to_model_dir \
 
 - Run on predicted parameters: 
-Assume you have run python engine.py --config-name=test  to get initial layout parameter precdition
+Assume you have run python inference.py --config-name=test  to get initial layout parameter precdition
 Then run 
 python -m scripts.interpolate \
   dir=\${output}/release/layout/cascade \ # path that saves predicted layout param
@@ -77,6 +77,8 @@ def main_worker(cfg):
 
     test_name = cfg.interpolation.test_name
     wrapper = CascadeAffordance(cfg.what_ckpt, cfg.where_ckpt, cfg=cfg, save_dir=cfg.dir)
+    cfg.dir = wrapper.save_dir
+
     name = cfg.interpolation.index
     
     if not cfg.dry:
@@ -120,6 +122,7 @@ def make_gif(start_frame, data_dir, T):
     t = 10
     imageio.mimsave(osp.join(data_dir, index) + '_image.gif', image_list, duration=1./t)
     imageio.mimsave(osp.join(data_dir, index) + '_mask.gif', mask_list, duration=1./t)
+    print('saved to', osp.join(data_dir, index) + '_image.gif')
 
 
 if __name__ == '__main__':

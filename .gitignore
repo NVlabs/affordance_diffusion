@@ -6,4 +6,5 @@ output/
 __pycache__/
 .vscode/
 wandb/
-third_party/
+# third_party/
+**/glide_model_cache/

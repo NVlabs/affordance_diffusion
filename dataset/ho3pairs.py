@@ -5,7 +5,7 @@
 # --------------------------------------------------------
 import numpy as np
 import os.path as osp
-from random import randint, uniform
+from random import randint, uniform, random
 import cv2
 import PIL
 from PIL import Image, ImageFilter
@@ -183,7 +183,7 @@ class HO3Pairs(Dataset):
         else:
             bboxes = None
 
-        if uniform() > 0.5 and self.use_flip:
+        if random() > 0.5 and self.use_flip:
             base_pil_image = F.hflip(base_pil_image)
             base_pil_obj = F.hflip(base_pil_obj)
             base_pil_mask = F.hflip(base_pil_mask)
@@ -202,7 +202,7 @@ class HO3Pairs(Dataset):
 
         base_tensor = pil_image_to_norm_tensor(base_pil_image)
         base_obj = pil_image_to_norm_tensor(base_pil_obj)
-        base_mask = (th.FloatTensor(np.asarray(base_pil_mask)) > 0)[None]
+        base_mask = (th.FloatTensor(np.asarray(base_pil_mask)> 0))[None]
         return th.LongTensor(tokens), th.BoolTensor(mask), base_tensor, \
             base_obj, base_mask, mask_param.astype(np.float32).reshape(-1), text
 
@@ -211,7 +211,7 @@ class HO3Pairs(Dataset):
             return image
         # blur
         image = self.transform(image)
-        if uniform() < self.cfg.jitter_p:  # w prob p
+        if random() < self.cfg.jitter_p:  # w prob p
             image = ToTensor()(image)
             image  += 0.05 * th.randn_like(image)
             image = ToPILImage()(image.clamp(0, 1))
@@ -219,7 +219,7 @@ class HO3Pairs(Dataset):
 
     def get_obj_file(self, ind):
         obj_file = self.obj_dir.format(self.image_files[ind])
-        if self.is_train and uniform() < self.cfg.sub_p:  # subsitute with prob p
+        if self.is_train and random() < self.cfg.sub_p:  # subsitute with prob p
             sub_file = self.sub_dir.format(self.image_files[ind])
             if osp.exists(sub_file):
                 obj_file = sub_file
@@ -318,7 +318,7 @@ def lollipop(mask, jitter, boxes, xy=0, ab=0, theta=0, scale=1., one_hand=False,
     size = max((x2 - x1) / 2, (y2 - y1) / 2)
     
     if jitter:
-        rand = lambda x: (uniform() * 2 * x - x)  # [-x, x]
+        rand = lambda x: (random() * 2 * x - x)  # [-x, x]
         # rand = lambda x: (0 * 2 * x - x)  # [-x, x]
         # print('TODO change back ', x)
         x += x *  rand(jxy)

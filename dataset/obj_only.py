@@ -106,7 +106,7 @@ class ObjImgDataset(Dataset):
         gt_mask = (th.FloatTensor(np.asarray(gt_mask)))[None]
 
         H, W = self.side_y, self.side_x
-        return th.tensor(tokens), th.tensor(mask, dtype=th.bool), base_tensor, \
+        return th.LongTensor(tokens), th.BoolTensor(mask), base_tensor, \
             base_tensor, gt_mask, mask_param, ''
     
     def load_hijack_param(self, ind, H, W):

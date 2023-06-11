@@ -1,10 +1,9 @@
-# TODO: clean up
 defaults:
-  - environment: mocap
+  - environment: grogu
   - hydra: default
 
 data: 
-  data_dir: /ws-judyye/data/hoi4d/obj_cls_only/*.*g
+  data_dir: ${environment.data}/hoi4d/obj_cls_only/*.*g
   split: 
 batch_size: 8
 
@@ -18,7 +17,7 @@ interpolation:
 worker: inference # main function
 
 
-output: output/
+output: ${environment.output}
 what_ckpt: ${output}/release/content_glide/checkpoints/last.ckpt
 where_ckpt: ${output}/release/layout/checkpoints/last.ckpt
 
@@ -33,7 +32,7 @@ test_name: cascade
 test_num: 5
 dry: False
 dir: 
-dirB: /ws-judyye/data/hoi4d/corrsp_hoi_only/ # to eval FID
+dirB: ${environment.data}/hoi4d/corrsp_hoi_only/ # to eval FID
 
 mode: default
 folder: overall

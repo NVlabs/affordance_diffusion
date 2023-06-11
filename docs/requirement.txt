@@ -19,3 +19,5 @@ fid-score
 smplx
 ffmpeg
 git+https://github.com/hassony2/manopth.git
+git+"git+https://github.com/facebookresearch/pytorch3d.git@stable"
+taming-transformers-rom1504 

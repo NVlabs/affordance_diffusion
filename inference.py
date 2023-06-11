@@ -25,6 +25,7 @@ from dataset.dataset import build_imglist_dataloader
 from utils import overlay_hand
 
 
+
 class CascadeAffordance:
     def __init__(self, what_ckpt, where_ckpt=None, S=2, device='cuda:0', 
         save_dir=None, what=None, where=None, test_name='cascade', cfg=None) -> None:

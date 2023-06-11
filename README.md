@@ -1,7 +1,7 @@
 # Affordance Diffusion: Synthesizing Hand-Object Interactions
 Yufei Ye, Xueting Li, Abhinav Gupta, Shalini De Mello, Stan Birchfield, Jiaming Song, Shubham Tulsiani, Sifei Liu
 
-Coming soon: [[Project Page]]() [[Video]]() [[Arxiv]]() [[Data Generation]]()
+[[Project Page]](https://judyye.github.io/affordiffusion-www/) [[Video]](https://youtu.be/omhEoLzsopo) [[Arxiv]](https://arxiv.org/abs/2303.12538) [[Data Generation]](preprocess/)
 
 
 ## Installation
@@ -51,7 +51,7 @@ python -m scripts.interpolate dir=\${output}/release/layout/cascade index=0000_0
 ### Heatmap Guidance
 The following command runs guided generation with keypoints in `docs/demo_kpts`
 ```
-python inference  mode=hijack data.data_dir='docs/demo_kpts/*.png' test_name=hijack
+python inference.py  mode=hijack data.data_dir='docs/demo_kpts/*.png' test_name=hijack
 ```
 
 This should gives results similar to: 
@@ -66,38 +66,31 @@ This should gives results similar to:
 
 
 ### Train your own models
-- **LayoutNet:** First download off-shelf pretrained model from [here](https://openaipublic.blob.core.windows.net/diffusion/dec-2021/base_inpaint.pt) and specifies the saved path in `configs/model/layout.yaml:resume_ckpt`
+- **LayoutNet:** First download off-shelf pretrained model from [here](https://openaipublic.blob.core.windows.net/diffusion/dec-2021/base_inpaint.pt) and put it under `${environment.pretrain}/glide/base_inpaint.pt` specified in [`configs/model/layout.yaml:resume_ckpt`](config/model/layout.yaml)
 
 ```
-python engine.py -m  --config-name=train \
+python -m models.base -m  --config-name=train \
   expname=reproduce/\${model.module} \
   model=layout 
 ```
 
-- **ContentNet-GLIDE:** First download off-shelf pretrained model from [here](https://openaipublic.blob.core.windows.net/diffusion/dec-2021/base_inpaint.pt) and specifies the saved path in `configs/model/content_glide.yaml:resume_ckpt`
+- **ContentNet-GLIDE:** First download off-shelf pretrained model from [here](https://openaipublic.blob.core.windows.net/diffusion/dec-2021/base_inpaint.pt) and put it under `${environment.pretrain}/glide/base_inpaint.pt` specified in [`configs/model/content_glide.yaml:resume_ckpt`](config/model/content_glide.yaml)
 
 ```
-python engine.py -m  --config-name=train \
+python -m models.base -m  --config-name=train \
   expname=reproduce/\${model.module} \
   model=content_glide
 ```
 
 - **ContentNet-LDM:** 
-First download off-shelf pretrained model from [here](https://github.com/CompVis/latent-diffusion#inpainting) and specifies the saved path in `configs/model/content_ldm.yaml:resume_ckpt`
+First download off-shelf pretrained model from [here](https://github.com/CompVis/latent-diffusion#inpainting)  and put it under `${environment.pretrain}/stable/inpaint.ckpt` specified in `configs/model/content_ldm.yaml:resume_ckpt`
 
 ```
-python engine.py -m  --config-name=train \
+python -m models.base -m  --config-name=train \
   expname=reproduce/\${model.module} \
   model=content_ldm 
 ```
 
-## TODO:
-
-[] frankmocap/Ego_Centric_HOI_Detector
-
-[ ] zip data
-[ ] zip code base
-[ ] remove my wandb api...
 
 ## License
 

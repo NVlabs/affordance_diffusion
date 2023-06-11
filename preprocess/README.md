@@ -15,13 +15,17 @@ pip install -r requirement.txt
 ### Data Generation
 1. Download the original [HOI4D](https://hoi4d.github.io/) dataset (HOI4D_color and HOI4D_annotations) to your data folder `$data_dir`. 
 1. Extract frames from videos:
-```
-python generate_data.py --data_dir $data_dir --save_dir output/ --decode
-```
+    ```
+    python generate_data.py --data_dir $data_dir --save_dir output/ --decode
+    ```
 1. Inpaint by running the following script
-```
-python generate_data.py --data_dir $data_dir --save_dir output/ --inpaint
-```
+    ```
+    python generate_data.py --data_dir $data_dir --save_dir output/ --inpaint
+    ```
+1. Get hand bboxes
+    ```
+    python generate_data.py --data_dir $data_dir --save_dir output/ --bbox
+    ```
 
 This should generate paired object only counterparts like the following and save the neccessary meta info like hand mask for training. 
 

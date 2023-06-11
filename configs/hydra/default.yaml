@@ -1,5 +1,5 @@
 run:
-  dir: ${environment.local_dir}/${expname}/hydra
+  dir: ${output}/${expname}/hydra
 sweep:
-  dir: ${environment.local_dir}/${expname}/hydra_sweep
+  dir: ${output}/${expname}/hydra_sweep
   subdir: ID${hydra.job.id} 

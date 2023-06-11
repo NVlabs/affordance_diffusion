@@ -2,6 +2,6 @@ hoi4d_test:
   name: hoi4d_test
 
   data_dir: ${datadir_prefix}/hoi4d/HOI4D_glide
-  split: ${datadir_prefix}/hoi4d/Sets/all_contact_valmini_hand.csv
+  split: ${datadir_prefix}/hoi4d/Sets/Bottle_contact_train_handmini.csv # all_contact_valmini_hand.csv
   iou: 0.0
 

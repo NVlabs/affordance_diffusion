@@ -1,4 +1,5 @@
-# Modified from https://github.com/JudyYe/nnutils
+# MIT License
+#
 # Copyright (c) 2018 The Python Packaging Authority
 # Written by Yufei Ye (https://github.com/JudyYe)
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,15 +19,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# Modified from https://github.com/JudyYe/nnutils
 # --------------------------------------------------------
-# Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
-# NVIDIA CORPORATION & AFFILIATES and its licensors retain all intellectual property
-# and proprietary rights in and to this software, related documentation
-# and any modifications thereto.  Any use, reproduction, disclosure or
-# distribution of this software and related documentation without an express
-# license agreement from NVIDIA CORPORATION & AFFILIATES is strictly prohibited.
-# Modified by Yufei Ye (https://github.com/JudyYe)
-# --------------------------------------------------------
+
 import numpy as np
 import torch
 

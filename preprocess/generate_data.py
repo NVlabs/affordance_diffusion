@@ -22,20 +22,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # --------------------------------------------------------
-# Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
-# NVIDIA CORPORATION & AFFILIATES and its licensors retain all intellectual property
-# and proprietary rights in and to this software, related documentation
-# and any modifications thereto.  Any use, reproduction, disclosure or
-# distribution of this software and related documentation without an express
-# license agreement from NVIDIA CORPORATION & AFFILIATES is strictly prohibited.
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+# see CC-BY-NC-SA-4.0.md for details
 # Written by Yufei Ye (https://github.com/JudyYe)
 # --------------------------------------------------------
+
 from argparse import ArgumentParser
 import os
 import os.path as osp
 from typing import Tuple
 from tqdm import tqdm
 import pandas
+import json
+import pickle
 from PIL import Image
 import cv2
 import numpy as np
@@ -407,6 +406,54 @@ def decode_frame(csv_file, vid_index=None, rewrite=False):
                 os.system('rm -r %s' % lock_file)
 
 
+def make_bbox(df_file):
+#   {"image_path": "xxx.jpg", "hand_bbox_list":[{"left_hand":[x,y,w,h], "right_hand":[x,y,w,h]}], "body_bbox_list":[[x,y,w,h]]}
+# Note that bbox format is [minX,minY,width,height]
+    data_dir = args.data_dir
+    vis_dir = osp.join(data_dir, 'vis/{}_{}.png')
+    os.makedirs(vis_dir, exist_ok=True)
+    image_dir = osp.join(data_dir, 'HOI4D_release/{}/align_frames/{:04d}.png')
+    bbox_dir = osp.join(args.save_dir, 'HOI4D_glide/det_hand/{}.json')
+    os.makedirs(bbox_dir, exist_ok=True)
+    right_bbox_dir = osp.join(data_dir, 'handpose/refinehandpose_right/{}/{:d}.pickle')
+    left_bbox_dir = osp.join(data_dir, 'handpose/refinehandpose_left/{}/{:d}.pickle')
+
+    df = pandas.read_csv(df_file)
+    for i, data in tqdm(df.iterrows(), total=len(df)):
+        vid, fnum = data['vid_index'], data['frame_number']
+        index_str = '{}_frame{:04d}'.format(data['vid_index'].replace('/', '_'), data['frame_number'])
+        bbox_file = bbox_dir.format(index_str)
+        if args.skip and osp.exists(bbox_file):
+            continue
+        lock_file = bbox_file + '.lock'
+        try:
+             os.makedirs(lock_file)
+        except FileExistsError:
+            if args.skip:
+                continue
+
+        def get_bbox_xywh(obj_file):
+            with open(obj_file, 'rb') as fp:
+                obj = pickle.load(fp)
+            kpts = obj['kps2D']
+            x1 = int(min(kpts[:, 0]))
+            y1 = int(min(kpts[:, 1]))
+            x2 = int(max(kpts[:, 0]))
+            y2 = int(max(kpts[:, 1]))
+            return [x1, y1, x2-x1, y2-y1]
+
+        hand_obj = {}
+        if osp.exists(right_bbox_dir.format(vid, fnum)):
+            hand_obj['right_hand'] = get_bbox_xywh(right_bbox_dir.format(vid, fnum))
+        if osp.exists(left_bbox_dir.format(vid, fnum)):
+            hand_obj['left_hand'] = get_bbox_xywh(left_bbox_dir.format(vid, fnum))
+        bbox_obj = {'image_path': index_str, 'hand_bbox_list': [hand_obj], 'body_bbox_list': [[0, 0, 100, 100]]}
+        with open(bbox_file, 'w') as fp:
+            json.dump(bbox_obj, fp)
+        os.system('rm -r %s' % lock_file)
+    return 
+
+
 
 def parser_args():
     parser = ArgumentParser()
@@ -428,6 +475,7 @@ def parser_args():
     parser.add_argument('--dry', action='store_true')
     parser.add_argument('--decode', action='store_true')
     parser.add_argument('--inpaint', action='store_true')
+    parser.add_argument('--bbox', action='store_true')
     parser.add_argument('--dir', type=str)
     args = parser.parse_args()
 
@@ -441,3 +489,5 @@ if __name__ == '__main__':
         decode_frame(args.split)
     if args.inpaint:
         batch_main(args)
+    if args.bbox:
+        make_bbox(args.split)

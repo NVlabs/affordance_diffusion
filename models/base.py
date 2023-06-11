@@ -191,7 +191,7 @@ def main_worker(cfg):
     model = model_cls(cfg, )
     model.init_model()
 
-    if cfg.environment.overwrite:
+    if cfg.overwrite:
         logging.warn('#### Dangerous, overwrite %s' % cfg.exp_dir)
         shutil.rmtree(cfg.exp_dir, ignore_errors=True)
 

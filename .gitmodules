@@ -4,3 +4,6 @@
 [submodule "thrid_party"]
 	path = thrid_party
 	url = https://github.com/JudyYe/EDSR-PyTorch.git
+[submodule "third_party/frankmocap"]
+	path = third_party/frankmocap
+	url = https://github.com/JudyYe/frankmocap.git

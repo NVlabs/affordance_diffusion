@@ -2,5 +2,5 @@ hoi4d_train:
   name: hoi4d_train
 
   data_dir: ${datadir_prefix}/hoi4d/HOI4D_glide
-  split: ${datadir_prefix}/hoi4d/Sets/all_contact_train_hand.csv
+  split: ${datadir_prefix}/hoi4d/Sets/Bottle_contact_train_handmini.csv # ${datadir_prefix}/hoi4d/Sets/all_contact_train_hand.csv
   iou: 0.0

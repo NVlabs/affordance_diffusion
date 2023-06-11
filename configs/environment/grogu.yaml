@@ -1,0 +1,22 @@
+# path to store model, output
+# $output/
+#   release/
+output: /grogu/user/yufeiy2/dex_afford/
+
+
+# path to store data
+# $data/
+#   hoi4d/
+#     HOI4D_glide/
+#     Sets/
+data: /home/yufeiy2/scratch/result/
+# /compute/grogu-1-34/yufeiy2/
+
+
+# path to store pretrained models
+# $pretrain/
+#   glide/
+#     base_inpaint.pt
+#   stable/
+#     base_inpaint.pt
+pretrain: /home/yufeiy2/scratch/pretrain/

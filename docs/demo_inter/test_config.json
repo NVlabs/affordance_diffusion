@@ -1,0 +1,7 @@
+{
+  "where": "output//release/layout/checkpoints/last.ckpt",
+  "what": "output//release/content_glide/checkpoints/last.ckpt",
+  "S": 2,
+  "where_step": 0,
+  "what_step": 0
+}
