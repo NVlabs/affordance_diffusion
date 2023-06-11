@@ -36,6 +36,7 @@ HOI Image | Object Image | SDEdited Object Image
 
 
 
+
 ## Acknowledgement
 Affordance Diffusion (Data Generation) leverages many amazing open-sources shared in research community:
 - [GLIDE](https://github.com/openai/glide-text2im)

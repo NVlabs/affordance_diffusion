@@ -63,7 +63,8 @@ This should gives results similar to:
 
 ## Training
 ### Data Preprocessing
-See [`preprocess/`](preprocess)
+We provide the script to generate the HO3Pair dataset. Please see [`preprocess/`](preprocess). 
+
 
 
 ### Train your own models
@@ -92,6 +93,8 @@ python -m models.base -m  --config-name=train \
   model=content_ldm 
 ```
 
+### Split and test images
+Per-category HOI4D instance splits (was not used in the paper), test images on HOI4D and [EPIC-KITCHENS(VISOR)](https://epic-kitchens.github.io/VISOR/) can be downloaded [here](https://drive.google.com/drive/folders/1jjQGNAJ1zphsU2g88B-a4jB9ODrqd5oi?usp=drive_link).
 
 ## License
 
