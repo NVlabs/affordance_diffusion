@@ -1,6 +1,10 @@
 # Affordance Diffusion: Synthesizing Hand-Object Interactions
 Yufei Ye, Xueting Li, Abhinav Gupta, Shalini De Mello, Stan Birchfield, Jiaming Song, Shubham Tulsiani, Sifei Liu
 
+in CVPR2023
+
+**Tl;dr**: Given a single RGB image of an object, hallucinate plausible ways of human interacting with it. 
+
 [[Project Page]](https://judyye.github.io/affordiffusion-www/) [[Video]](https://youtu.be/omhEoLzsopo) [[Arxiv]](https://arxiv.org/abs/2303.12538) [[Data Generation]](preprocess/)
 
 
@@ -106,3 +110,18 @@ Affordance Diffusion leverages many amazing open-sources shared in research comm
 - [Detectron2](https://github.com/facebookresearch/detectron2)
 - [Latent Diffusion](https://github.com/CompVis/latent-diffusion) (Files under `ldm/` are modified from this repo)
 - [GLIDE](https://github.com/openai/glide-text2im) and [its modification](https://git@github.com/crowsonkb/glide-text2im) (Files under `glide_text2im/` are modified from this repo)
+
+
+## Citation
+If you use find this work helpful, please consider citing:
+
+```
+ @inproceedings{ye2023affordance,
+                title={Affordance Diffusion: Synthesizing Hand-Object Interactions},
+                author={Yufei Ye and Xueting Li and Abhinav Gupta
+                        and Shalini De Mello and Stan Birchfield and Jiaming Song
+                        and Shubham Tulsiani and Sifei Liu},
+                year={2023},
+                booktitle ={CVPR},
+            }
+```
