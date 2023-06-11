@@ -1,7 +1,7 @@
 # path to store model, output
 # $output/
 #   release/
-output: /grogu/user/yufeiy2/dex_afford/
+output: output/ # /grogu/user/yufeiy2/dex_afford/
 
 
 # path to store data

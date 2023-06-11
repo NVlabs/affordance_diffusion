@@ -11,8 +11,9 @@ The script takes input as HOI images and removes hands by inpainting techniques 
 ```
 pip install -r requirement.txt
 ```
+Note: For data generation, please also install `git+https://github.com/openai/glide-text2im`, which is not the same as the modified repo under `glide_text2im/`
 
-### Data Generation
+## Data Generation
 1. Download the original [HOI4D](https://hoi4d.github.io/) dataset (HOI4D_color and HOI4D_annotations) to your data folder `$data_dir`. 
 1. Extract frames from videos:
     ```

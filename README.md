@@ -62,7 +62,8 @@ This should gives results similar to:
 
 
 ## Training
-### Data Preprocessing (to come)
+### Data Preprocessing
+See [`preprocess/`](preprocess)
 
 
 ### Train your own models
