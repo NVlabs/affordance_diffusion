@@ -11,7 +11,6 @@ conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit
 # pytorch3d
 conda install -c fvcore -c iopath -c conda-forge fvcore iopath -y
 conda install -c bottler nvidiacub -y 
-pip install ninja
 pip install "git+https://github.com/facebookresearch/pytorch3d.git@v0.7.0"
 
 
