@@ -1,0 +1,76 @@
+defaults:
+  - environment: grogu
+  - hydra: default
+  - data@trainsets: [hoi4d_train]
+  - data@testsets: [hoi4d_test]
+  - model: content_glide
+
+# main function
+worker: models.base
+
+# directory params
+output: ${environment.output} # /ws-judyye/result/
+datadir_prefix: ${environment.data}
+expname: dev/tmp
+checkpoints_dir: ${output}/${expname}
+outputs_dir: ${checkpoints_dir}/log
+exp_dir: ${checkpoints_dir}
+project_name: 'da_'
+
+loss:
+  naive_wd: 0 
+  naive: 1.
+  twod: 0.1
+
+# data augmentation
+jitter_p: 0.5  # probability of RandomApply
+sub_p: 0.5     # probability to use SDEdited image (in sub_dir)
+sub_dir: denoised_obj
+jitter_obj: False
+jitter:
+  xy: ${model.jitter_ratio}
+  ab: ${model.jitter_ratio}
+  theta: ${model.jitter_ratio}
+resize_ratio: 0.8
+use_flip: True  # horizonto flip
+
+# dataset parameter
+one_hand: False
+side_x: ${model.side_x}
+side_y: ${side_x}
+test_batch_size: 8
+batch_size: 8
+
+resume_train_from: ${exp_dir}/checkpoints/last.ckpt
+use_fp16: False
+
+# model configs
+mask_mode: lollipop
+soft_mask: ${model.soft_mask}
+
+# control flow params
+eval: False
+device: cuda
+cudnn_benchmark: True
+
+# loggingh params
+logging: wandb
+wandb_api:  change_to_your_api # TODO: change to yours! 
+log_frequency: 2500
+print_frequency: 100
+save_frequency: 5000
+save_topk: 1
+sanity_step: 1
+max_steps: 100000
+
+# optimization params
+learning_rate: 1e-5
+adam_weight_decay: 0.01
+gradient_accumualation_steps: 1
+
+# diffusion model params
+test_guidance_scale: 0 
+sample_respacing: '100'
+
+seed: 123
+overwrite: False
